@@ -1,10 +1,6 @@
 from fastapi import FastAPI
-<<<<<<< main
-from routes.upload import router as upload_router
-=======
 from fastapi.middleware.cors import CORSMiddleware
 from config import settings
->>>>>>> main
 
 from routes import upload
 from routes import potholes
@@ -20,7 +16,6 @@ app = FastAPI(
     description=settings.DESCRIPTION
 
 )
-
 
 
 # ROUTE REGISTRATION
@@ -50,8 +45,7 @@ app.include_router(
 )
 
 
-
-# HEALTH CHECK (very important for AWS deployment later)
+# HEALTH CHECK
 
 @app.get("/health")
 
@@ -66,17 +60,11 @@ def health_check():
     }
 
 
-
 # ROOT ENDPOINT
-
-app.include_router(upload_router)
 
 @app.get("/")
 
 def home():
-<<<<<<< main
-    return {"message": "API running"}
-=======
 
     return {
 
@@ -87,6 +75,10 @@ def home():
         "status":"running"
 
     }
+
+
+# CORS (needed for frontend later)
+
 app.add_middleware(
 
     CORSMiddleware,
@@ -100,4 +92,3 @@ app.add_middleware(
     allow_headers=["*"],
 
 )
->>>>>>> main
